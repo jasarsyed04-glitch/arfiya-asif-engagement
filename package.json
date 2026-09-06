@@ -1,0 +1,9 @@
+{
+  "name": "arfiya-asif-engagement-invitation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Interactive engagement invitation website for Arfiya and Asif Ali",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

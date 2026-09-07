@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setTimeout(() => {
         window.location.href = "invitation.html";
-      }, 900);
+      }, 3000);
     };
 
     envelope.addEventListener("click", open);

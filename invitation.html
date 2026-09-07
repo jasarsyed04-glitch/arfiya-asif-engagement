@@ -1,47 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Invitation to the engagement ceremony of Arfiya and Asif Ali">
-  <title>You're Invited | Arfiya & Asif Ali</title>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Arfiya & Asif Ali Engagement Invitation"
+  >
+
+  <title>
+    Arfiya & Asif Ali | Engagement Invitation
+  </title>
+
   <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
-  <div class="petals"></div>
 
-  <header class="site-nav">
-    <a href="index.html" class="brand">A &amp; A</a>
-    <a href="details.html" class="nav-link">Event Details</a>
-  </header>
+  <!-- ✨ Sparkles -->
+  <div class="sparkles"></div>
 
+  <!-- 🎵 Music Player -->
+  <div
+    id="music-player"
+    style="
+      position: fixed;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+    "
+  >
+
+    <iframe
+      id="youtube-player"
+      width="1"
+      height="1"
+      src="https://www.youtube.com/embed/cQxeYih6a4U?enablejsapi=1&autoplay=0&loop=1&playlist=cQxeYih6a4U"
+      title="Jashn-E-Bahaaraa"
+      allow="autoplay; encrypted-media"
+    >
+    </iframe>
+
+  </div>
+
+
+  <!-- 💍 Main Invitation -->
   <main class="invitation-page">
-    <section class="invitation-hero reveal">
-      <div class="hero-copy">
-        <p class="eyebrow">With love &amp; blessings</p>
-        <h1>You are invited<br><em>to celebrate</em></h1>
-        <div class="names">Arfiya <span>&amp;</span> Asif Ali</div>
-        <p class="date-line">Sunday · 13 September 2026 · 10:00 AM</p>
-        <p class="location">Kallur, Khammam, Telangana</p>
 
-        <div class="actions">
-          <a class="gold-btn" href="details.html">Enter the Celebration →</a>
-          <button class="outline-btn" id="shareBtn">Share Invitation</button>
+    <!-- Top heading -->
+
+    <p class="eyebrow">
+      With Love &amp; Blessings
+    </p>
+
+    <h1>
+      Arfiya
+      <span>&amp;</span>
+      Asif Ali
+    </h1>
+
+    <p class="subtitle">
+      Engagement Ceremony
+    </p>
+
+
+    <!-- 🖼️ Invitation Image -->
+
+    <section class="invitation-image-section">
+
+      <img
+        src="invitation.jpg"
+        alt="Arfiya and Asif Ali Engagement Invitation"
+        class="invitation-image"
+      >
+
+    </section>
+
+
+    <!-- 🎵 Music Button -->
+
+    <section class="music-section">
+
+      <button
+        id="musicButton"
+        class="gold-btn"
+        type="button"
+      >
+        🎵 Play Our Song
+      </button>
+
+      <p id="musicStatus" class="hint">
+        Tap to play Jashn-E-Bahaaraa ♡
+      </p>
+
+    </section>
+
+
+    <!-- 📅 Event Details -->
+
+    <section class="event-details">
+
+      <h2>
+        You Are Invited
+      </h2>
+
+      <p>
+        Please join us to celebrate
+        the beautiful beginning of
+        Arfiya &amp; Asif Ali.
+      </p>
+
+
+      <div class="details-grid">
+
+        <div class="detail-card">
+
+          <div class="detail-icon">
+            💍
+          </div>
+
+          <h3>
+            Engagement
+          </h3>
+
+          <p>
+            Sunday
+          </p>
+
+          <strong>
+            13 September 2026
+          </strong>
+
         </div>
+
+
+        <div class="detail-card">
+
+          <div class="detail-icon">
+            🕙
+          </div>
+
+          <h3>
+            Time
+          </h3>
+
+          <p>
+            Ceremony begins
+          </p>
+
+          <strong>
+            10:00 AM
+          </strong>
+
+        </div>
+
+
+        <div class="detail-card">
+
+          <div class="detail-icon">
+            📍
+          </div>
+
+          <h3>
+            Location
+          </h3>
+
+          <p>
+            Kallur
+          </p>
+
+          <strong>
+            Khammam, Telangana
+          </strong>
+
+        </div>
+
       </div>
 
-      <div class="card-frame">
-        <img src="invitation.jpg" alt="Arfiya and Asif Ali engagement invitation">
-      </div>
     </section>
 
-    <section class="quote-section reveal">
-      <p class="eyebrow">A new chapter begins</p>
-      <h2>Two hearts, one beautiful promise.</h2>
-      <p>We would be delighted to have you with us as we celebrate this special moment with our families and loved ones.</p>
+
+    <!-- ⏳ Countdown -->
+
+    <section class="countdown-section">
+
+      <h2>
+        Counting Down to Our Special Day
+      </h2>
+
+      <div
+        id="countdown"
+        class="countdown"
+      >
+
+        <div class="countdown-box">
+          <span id="days">00</span>
+          <small>Days</small>
+        </div>
+
+        <div class="countdown-box">
+          <span id="hours">00</span>
+          <small>Hours</small>
+        </div>
+
+        <div class="countdown-box">
+          <span id="minutes">00</span>
+          <small>Minutes</small>
+        </div>
+
+        <div class="countdown-box">
+          <span id="seconds">00</span>
+          <small>Seconds</small>
+        </div>
+
+      </div>
+
     </section>
+
+
+    <!-- ❤️ Closing -->
+
+    <section class="closing-message">
+
+      <p>
+        With love, happiness and blessings,
+      </p>
+
+      <h2>
+        Arfiya &amp; Asif Ali
+      </h2>
+
+      <p>
+        We can't wait to celebrate
+        this beautiful moment with you.
+      </p>
+
+    </section>
+
+
+    <!-- 📤 Share -->
+
+    <section class="share-section">
+
+      <button
+        id="shareBtn"
+        class="gold-btn"
+        type="button"
+      >
+        Share Invitation
+      </button>
+
+    </section>
+
   </main>
 
+
+  <!-- JavaScript -->
+
   <script src="script.js"></script>
+
 </body>
 </html>

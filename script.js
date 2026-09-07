@@ -1,97 +1,377 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+  /*
+   * =====================================================
+   * 💌 OPEN INVITATION
+   * =====================================================
+   */
+
   const envelope = document.getElementById("envelope");
   const openButton = document.getElementById("openInvitation");
 
-  // 🎵 Start engagement music
-  const playEngagementMusic = () => {
-    const player = document.getElementById("youtube-player");
-
-    if (player) {
-      player.contentWindow.postMessage(
-        JSON.stringify({
-          event: "command",
-          func: "playVideo",
-          args: []
-        }),
-        "*"
-      );
-    }
-  };
-
   if (envelope && openButton) {
-    const open = () => {
 
-      // 🎵 Start Jashn-E-Bahaaraa
-      playEngagementMusic();
+    let alreadyOpening = false;
 
-      // 💌 Open envelope
+    const openInvitation = () => {
+
+      if (alreadyOpening) {
+        return;
+      }
+
+      alreadyOpening = true;
+
       envelope.classList.add("open");
-      openButton.textContent = "Opening your invitation…";
+
+      openButton.textContent =
+        "Opening your invitation… ✨";
+
+      /*
+       * Give the envelope animation time to finish
+       * before opening the invitation page.
+       */
 
       setTimeout(() => {
+
         window.location.href = "invitation.html";
-      }, 3000);
+
+      }, 1200);
+
     };
 
-    envelope.addEventListener("click", open);
-    openButton.addEventListener("click", open);
+
+    envelope.addEventListener(
+      "click",
+      openInvitation
+    );
+
+
+    openButton.addEventListener(
+      "click",
+      openInvitation
+    );
+
   }
 
-  const shareBtn = document.getElementById("shareBtn");
+
+  /*
+   * =====================================================
+   * 🎵 YOUTUBE MUSIC
+   * =====================================================
+   */
+
+  const musicButton =
+    document.getElementById("musicButton");
+
+  const musicStatus =
+    document.getElementById("musicStatus");
+
+  const youtubePlayer =
+    document.getElementById("youtube-player");
+
+
+  let musicPlaying = false;
+
+
+  const playMusic = () => {
+
+    if (!youtubePlayer) {
+      return;
+    }
+
+
+    youtubePlayer.contentWindow.postMessage(
+      JSON.stringify({
+        event: "command",
+        func: "playVideo",
+        args: []
+      }),
+      "*"
+    );
+
+
+    musicPlaying = true;
+
+
+    if (musicButton) {
+
+      musicButton.textContent =
+        "⏸ Pause Our Song";
+
+    }
+
+
+    if (musicStatus) {
+
+      musicStatus.textContent =
+        "🎵 Jashn-E-Bahaaraa is playing ♡";
+
+    }
+
+  };
+
+
+  const pauseMusic = () => {
+
+    if (!youtubePlayer) {
+      return;
+    }
+
+
+    youtubePlayer.contentWindow.postMessage(
+      JSON.stringify({
+        event: "command",
+        func: "pauseVideo",
+        args: []
+      }),
+      "*"
+    );
+
+
+    musicPlaying = false;
+
+
+    if (musicButton) {
+
+      musicButton.textContent =
+        "🎵 Play Our Song";
+
+    }
+
+
+    if (musicStatus) {
+
+      musicStatus.textContent =
+        "Tap to continue the music ♡";
+
+    }
+
+  };
+
+
+  if (musicButton) {
+
+    musicButton.addEventListener(
+      "click",
+      () => {
+
+        if (musicPlaying) {
+
+          pauseMusic();
+
+        } else {
+
+          playMusic();
+
+        }
+
+      }
+    );
+
+  }
+
+
+  /*
+   * =====================================================
+   * 📤 SHARE INVITATION
+   * =====================================================
+   */
+
+  const shareBtn =
+    document.getElementById("shareBtn");
+
 
   if (shareBtn) {
-    shareBtn.addEventListener("click", async () => {
-      const shareData = {
-        title: "Arfiya & Asif Ali — Engagement Invitation",
-        text: "You are invited to celebrate the engagement ceremony of Arfiya & Asif Ali on 13 September 2026 at 10:00 AM in Kallur, Khammam, Telangana.",
-        url: window.location.href
-      };
 
-      try {
-        if (navigator.share) {
-          await navigator.share(shareData);
-        } else {
-          await navigator.clipboard.writeText(window.location.href);
-          shareBtn.textContent = "Link Copied ✓";
-          setTimeout(() => shareBtn.textContent = "Share Invitation", 2200);
+    shareBtn.addEventListener(
+      "click",
+      async () => {
+
+        const shareData = {
+
+          title:
+            "Arfiya & Asif Ali — Engagement Invitation",
+
+          text:
+            "You are invited to celebrate the engagement ceremony of Arfiya & Asif Ali on 13 September 2026 at 10:00 AM in Kallur, Khammam, Telangana.",
+
+          url:
+            window.location.href
+
+        };
+
+
+        try {
+
+          if (navigator.share) {
+
+            await navigator.share(
+              shareData
+            );
+
+          } else {
+
+            await navigator.clipboard.writeText(
+              window.location.href
+            );
+
+
+            shareBtn.textContent =
+              "Link Copied ✓";
+
+
+            setTimeout(() => {
+
+              shareBtn.textContent =
+                "Share Invitation";
+
+            }, 2200);
+
+          }
+
+        } catch (error) {
+
+          /*
+           * User cancelled sharing.
+           * No action needed.
+           */
+
         }
-      } catch (e) {
-        // User cancelled sharing; no action needed.
+
       }
-    });
+    );
+
   }
 
-  const countdown = document.getElementById("countdown");
+
+  /*
+   * =====================================================
+   * ⏳ COUNTDOWN
+   * =====================================================
+   */
+
+  const countdown =
+    document.getElementById("countdown");
+
 
   if (countdown) {
-    // Event date: 13 September 2026, 10:00 AM IST.
-    const eventDate = new Date("2026-09-13T10:00:00+05:30").getTime();
+
+    /*
+     * Event:
+     * 13 September 2026
+     * 10:00 AM
+     * India Standard Time (+05:30)
+     */
+
+    const eventDate =
+      new Date(
+        "2026-09-13T10:00:00+05:30"
+      ).getTime();
+
 
     const updateCountdown = () => {
-      const now = Date.now();
-      let diff = eventDate - now;
 
-      if (diff < 0) diff = 0;
+      const now =
+        Date.now();
 
-      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const m = Math.floor((diff / (1000 * 60)) % 60);
-      const s = Math.floor((diff / 1000) % 60);
 
-      document.getElementById("days").textContent =
-        String(d).padStart(2, "0");
+      let difference =
+        eventDate - now;
 
-      document.getElementById("hours").textContent =
-        String(h).padStart(2, "0");
 
-      document.getElementById("minutes").textContent =
-        String(m).padStart(2, "0");
+      if (difference < 0) {
 
-      document.getElementById("seconds").textContent =
-        String(s).padStart(2, "0");
+        difference = 0;
+
+      }
+
+
+      const days =
+        Math.floor(
+          difference /
+          (1000 * 60 * 60 * 24)
+        );
+
+
+      const hours =
+        Math.floor(
+          (difference /
+            (1000 * 60 * 60)) % 24
+        );
+
+
+      const minutes =
+        Math.floor(
+          (difference /
+            (1000 * 60)) % 60
+        );
+
+
+      const seconds =
+        Math.floor(
+          (difference /
+            1000) % 60
+        );
+
+
+      const daysElement =
+        document.getElementById("days");
+
+
+      const hoursElement =
+        document.getElementById("hours");
+
+
+      const minutesElement =
+        document.getElementById("minutes");
+
+
+      const secondsElement =
+        document.getElementById("seconds");
+
+
+      if (daysElement) {
+
+        daysElement.textContent =
+          String(days).padStart(2, "0");
+
+      }
+
+
+      if (hoursElement) {
+
+        hoursElement.textContent =
+          String(hours).padStart(2, "0");
+
+      }
+
+
+      if (minutesElement) {
+
+        minutesElement.textContent =
+          String(minutes).padStart(2, "0");
+
+      }
+
+
+      if (secondsElement) {
+
+        secondsElement.textContent =
+          String(seconds).padStart(2, "0");
+
+      }
+
     };
 
+
     updateCountdown();
-    setInterval(updateCountdown, 1000);
+
+
+    setInterval(
+      updateCountdown,
+      1000
+    );
+
   }
+
 });
